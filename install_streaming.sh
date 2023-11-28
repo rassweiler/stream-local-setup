@@ -1,16 +1,21 @@
 #/bin/bash
 
 # Setup Docker
-read -r -p "Setup Docker? [y/N] " response
+read -r -p "Setup Docker and Jellyfin? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
 	yay -S gnome-terminal docker jellyfin-server jellyfin-media-player
-	wget https://desktop.docker.com/linux/main/amd64/129061/docker-desktop-4.25.2-x86_64.pkg.tar.zst > docker.pkg.tar.zst
-	sudo pacman -U ./docker.pkg.tar.zst
 	sudo systemctl disable docker.service
 	sudo systemctl disable containerd.service
 	sudo systemctl disable docker.socket
-	sudo systemctl disable docker-desktop
 	sudo systemctl start docker
+fi
+
+# Setup Docker
+read -r -p "Setup Docker-Desktop? [y/N] " response
+if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
+	wget https://desktop.docker.com/linux/main/amd64/129061/docker-desktop-4.25.2-x86_64.pkg.tar.zst
+	sudo pacman -U ./docker-desktop-4.25.2-x86_64.pkg.tar.zst
+	sudo systemctl disable docker-desktop
 	sudo systemctl start docker-desktop
 fi
 
