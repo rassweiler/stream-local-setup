@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=stop-stream
+Comment=stop streaming services
+Exec=/usr/share/applications/StreamSystem/stop.sh
+Icon=/usr/share/applications/StreamSystem/Stop.png
+Terminal=true
+Type=Application

@@ -9,9 +9,26 @@ Local host media management setup for arch based systems
 git clone https://github.com/rassweiler/stream-local-setup.git
 ```
 
-- Make install executable:
+- Make install executable and run:
 ```zsh
 sudo chmod +x install_streaming.sh
+./install_streaming.sh
+```
+
+- Setup each web client as desired
+
+## Start Services
+
+or run the start script:
+```zsh
+./start.sh
+```
+
+## Stop Services
+
+or run the stop script:
+```zsh
+./stop.sh
 ```
 
 ## References

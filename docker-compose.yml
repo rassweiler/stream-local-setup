@@ -1,133 +1,122 @@
 version: "3.8"
-networks:
-	stream:
-		external: false
 services:
-	sonarr:
-		container_name: sonarr
-		image: "ghcr.io/linuxserver/sonarr:latest"
-		restart: unless-stopped
-		networks:
-			- gitea
-		ports:
-			- '9094:8989'
-		depends_on:
-			- torrent
-			- prowlarr
-		environment:
-			PUID: '1000'
-			PGID: '1000'
-			TZ: 'America/Toronto'
-			UMASK_SET: '022'
-		volumes:
-			- /media/Docker/Sonarr:/config
-			- /media/Shows:/tv
-			- /media/Downloads:/downloads
-			- /media/Backups:/backups
-			- /etc/localtime:/etc/localtime:ro
+  sonarr:
+    container_name: sonarr
+    image: "ghcr.io/linuxserver/sonarr:latest"
+    restart: unless-stopped
+    network_mode: "host"
+    ports:
+      - '8989:8989'
+    depends_on:
+      - torrent
+      - prowlarr
+    environment:
+      PUID: '1000'
+      PGID: '1000'
+      TZ: 'America/Toronto'
+      UMASK_SET: '022'
+    volumes:
+      - /media/Docker/Sonarr:/config
+      - /media/Shows:/tv
+      - /media/Downloads:/downloads
+      - /media/Backups:/backups
+      - /etc/localtime:/etc/localtime:ro
 
-	radarr:
-		container_name: radarr
-		image: "ghcr.io/linuxserver/radarr:latest"
-		restart: unless-stopped
-		networks:
-			- gitea
-		ports:
-			- '9095:7878'
-		depends_on:
-			- torrent
-			- prowlarr
-		environment:
-			PUID: '1000'
-			PGID: '1000'
-			TZ: 'America/Toronto'
-			UMASK_SET: '022'
-		volumes:
-			- /media/Docker/Radarr:/config
-			- /media/Movies:/movies
-			- /media/Downloads:/downloads
-			- /media/Backups:/backups
-			- /etc/localtime:/etc/localtime:ro
+  radarr:
+    container_name: radarr
+    image: "ghcr.io/linuxserver/radarr:latest"
+    restart: unless-stopped
+    network_mode: "host"
+    ports:
+      - '7878:7878'
+    depends_on:
+      - torrent
+      - prowlarr
+    environment:
+      PUID: '1000'
+      PGID: '1000'
+      TZ: 'America/Toronto'
+      UMASK_SET: '022'
+    volumes:
+      - /media/Docker/Radarr:/config
+      - /media/Movies:/movies
+      - /media/Downloads:/downloads
+      - /media/Backups:/backups
+      - /etc/localtime:/etc/localtime:ro
 
-	lidarr:
-		container_name: lidarr
-		image: "ghcr.io/linuxserver/lidarr:latest"
-		restart: unless-stopped
-		networks:
-			- gitea
-		ports:
-			- '9096:8686'
-		depends_on:
-			- torrent
-			- prowlarr
-		environment:
-			PUID: '1000'
-			PGID: '1000'
-			TZ: 'America/Toronto'
-			UMASK_SET: '022'
-		volumes:
-			- /media/Docker/Lidarr:/config
-			- /media/Music:/Music
-			- /media/Downloads:/downloads
-			- /media/Backups:/backups
-			- /etc/localtime:/etc/localtime:ro
+  lidarr:
+    container_name: lidarr
+    image: "ghcr.io/linuxserver/lidarr:latest"
+    restart: unless-stopped
+    network_mode: "host"
+    ports:
+      - '8686:8686'
+    depends_on:
+      - torrent
+      - prowlarr
+    environment:
+      PUID: '1000'
+      PGID: '1000'
+      TZ: 'America/Toronto'
+      UMASK_SET: '022'
+    volumes:
+      - /media/Docker/Lidarr:/config
+      - /media/Music:/Music
+      - /media/Downloads:/downloads
+      - /media/Backups:/backups
+      - /etc/localtime:/etc/localtime:ro
 
-	torrent:
-		container_name: torrent
-		image: "lscr.io/linuxserver/transmission:latest"
-		restart: unless-stopped
-		ports:
-			- '9091:9091'
-			- '51413:51413'
-			- '51413:51413/udp'
-		networks:
-			- gitea
-		environment:
-			PUID: '1000'
-			PGID: '1000'
-			TZ: 'America/Toronto'
-			UMASK_SET: '022'
-			USER: 'CHANGEME' # !!!!!!!!!!!!!!!!!!!!!
-			PASS: 'CHANGEME' # !!!!!!!!!!!!!!!!!!!!!
-		volumes:
-			- /media/Docker/Transmission:/config
-			- /media/Downloads:/downloads
-			- /media/Backups:/backups
-			- /media/Watch:/watch
-			- /etc/localtime:/etc/localtime:ro
+  torrent:
+    container_name: torrent
+    image: "lscr.io/linuxserver/transmission:latest"
+    restart: unless-stopped
+    ports:
+      - '9091:9091'
+      - '51413:51413'
+      - '51413:51413/udp'
+      network_mode: "host"
+    environment:
+      PUID: '1000'
+      PGID: '1000'
+      TZ: 'America/Toronto'
+      UMASK_SET: '022'
+    volumes:
+      - /media/Docker/Transmission:/config
+      - /media/Downloads:/downloads
+      - /media/Backups:/backups
+      - /media/Watch:/watch
+      - /etc/localtime:/etc/localtime:ro
 
-	prowlarr:
-		container_name: prowlarr
-		image: 'ghcr.io/linuxserver/prowlarr:nightly'
-		restart: unless-stopped
-		ports:
-			- '9092:9696'
-		networks:
-			- gitea
-		depends_on:
-			- flaresolverr
-		environment:
-			PUID: '1000'
-			PGID: '1000'
-			TZ: 'America/Toronto'
-			UMASK_SET: '022'
-		volumes:
-			- /media/Docker/Prowlarr:/config
-			- /media/Backups:/backups
-			- /etc/localtime:/etc/localtime:ro
+  prowlarr:
+    container_name: prowlarr
+    image: 'ghcr.io/linuxserver/prowlarr:nightly'
+    restart: unless-stopped
+    ports:
+      - '9696:9696'
+      network_mode: "host"
+    depends_on:
+      - flaresolverr
+    environment:
+      PUID: '1000'
+      PGID: '1000'
+      TZ: 'America/Toronto'
+      UMASK_SET: '022'
+    volumes:
+      - /media/Docker/Prowlarr:/config
+      - /media/Backups:/backups
+      - /etc/localtime:/etc/localtime:ro
 
-	flaresolverr:
-		container_name: flaresolverr
-		image: "ghcr.io/flaresolverr/flaresolverr:latest"
-		restart: unless-stopped
-		ports:
-			- '9093:8191'
-		networks:
-			- gitea
-		environment:
-			PUID: '1000'
-			PGID: '1000'
-			TZ: 'America/Toronto'
-			UMASK_SET: '022'
-		volumes:
-			- /etc/localtime:/etc/localtime:ro
+  flaresolverr:
+    container_name: flaresolverr
+    image: "ghcr.io/flaresolverr/flaresolverr:latest"
+    restart: unless-stopped
+    ports:
+      - '8191:8191'
+      network_mode: "host"
+    environment:
+      PUID: '1000'
+      PGID: '1000'
+      TZ: 'America/Toronto'
+      UMASK_SET: '022'
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
