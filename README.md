@@ -9,28 +9,29 @@ Local host media management setup for arch based systems
 git clone https://github.com/rassweiler/stream-local-setup.git
 ```
 
-- Make install executable and run:
+- Run the install script:
 ```zsh
-sudo chmod +x install_streaming.sh
 ./install_streaming.sh
 ```
 
-- Setup each web client as desired
+- Once all the files are copied and the apps are opened load the backup files for each application.
+- Confirm all apps can communicate.
+- Change the passwords and api keys for all apps and update them in Prowlarr.
+- Setup each app as desired.
 
 ## Start Services
 
-or run the start script:
+Run the start application from the start menu or run the start script in the repo:
 ```zsh
 ./start.sh
 ```
 
 ## Stop Services
 
-or run the stop script:
+Run the stop application from the start menu or run the stop script in the repo:
 ```zsh
 ./stop.sh
 ```
 
 ## References
 
-[Docker Desktop](https://docs.docker.com/desktop/install/archlinux/)
