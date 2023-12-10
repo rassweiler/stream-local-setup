@@ -32,10 +32,10 @@ read -r -p "Copy Files To OS? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
 	cp docker-compose.yml /media/Docker/docker-compose.yml
 	sudo cp -r StreamSystem /usr/share/applications/
-	cp Init/lidarr.zip /media/Backups/Lidarr/
-	cp Init/radarr.zip /media/Backups/Radarr/
-	cp Init/Sonarr.zip /media/Backups/Sonarr/
-	cp Init/prowlarr.zip /media/Backups/Prowlarr/
+	sudo cp Init/lidarr.zip /media/Backups/Lidarr/
+	sudo cp Init/radarr.zip /media/Backups/Radarr/
+	sudo cp Init/sonarr.zip /media/Backups/Sonarr/
+	sudo cp Init/prowlarr.zip /media/Backups/Prowlarr/
 	sudo chmod +x /usr/share/applications/StreamSystem/start.sh
 	sudo chmod +x /usr/share/applications/StreamSystem/stop.sh
 	sudo chmod +x /usr/share/applications/StreamSystem/start-stream.desktop
