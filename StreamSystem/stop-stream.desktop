@@ -5,3 +5,4 @@ Exec=/usr/share/applications/StreamSystem/stop.sh
 Icon=/usr/share/applications/StreamSystem/Stop.png
 Terminal=true
 Type=Application
+Categories=Audio;Video;Network;

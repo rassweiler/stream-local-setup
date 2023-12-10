@@ -5,3 +5,4 @@ Exec=/usr/share/applications/StreamSystem/start.sh
 Icon=/usr/share/applications/StreamSystem/Start.png
 Terminal=true
 Type=Application
+Categories=Audio;Video;Network;
