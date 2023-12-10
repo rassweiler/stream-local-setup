@@ -74,7 +74,7 @@ services:
       - '9091:9091'
       - '51413:51413'
       - '51413:51413/udp'
-      network_mode: "host"
+    network_mode: "host"
     environment:
       PUID: '1000'
       PGID: '1000'
@@ -93,7 +93,7 @@ services:
     restart: unless-stopped
     ports:
       - '9696:9696'
-      network_mode: "host"
+    network_mode: "host"
     depends_on:
       - flaresolverr
     environment:
@@ -112,7 +112,7 @@ services:
     restart: unless-stopped
     ports:
       - '8191:8191'
-      network_mode: "host"
+    network_mode: "host"
     environment:
       PUID: '1000'
       PGID: '1000'
